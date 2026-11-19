@@ -1,24 +1,25 @@
 package org.firstinspires.ftc.teamcode.utils.status;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Status {
-    private volatile List<RobotStatus> history = new ArrayList<>();
+    private RobotStatus current = RobotStatus.NONEXISTANT;
+    private RobotStatus previous = RobotStatus.NONEXISTANT;
 
     public Status() {
     }
 
     public RobotStatus current() {
-        return !history.isEmpty() ? history.get(history.size() - 1) : RobotStatus.NONEXISTANT;
+        return current;
     }
 
     public RobotStatus previous() {
-        return (history.size() >= 2) ? history.get(history.size() - 2) : RobotStatus.NONEXISTANT;
+        return previous;
     }
 
     public void set(RobotStatus status) {
-        this.history.add(status);
+        if (status != this.current) {
+            this.previous = this.current;
+            this.current = status;
+        }
     }
 
 
