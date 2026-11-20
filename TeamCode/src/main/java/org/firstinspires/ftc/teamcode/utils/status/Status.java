@@ -1,10 +1,13 @@
 package org.firstinspires.ftc.teamcode.utils.status;
 
 public class Status {
-    private RobotStatus current = RobotStatus.NONEXISTANT;
-    private RobotStatus previous = RobotStatus.NONEXISTANT;
+    private RobotStatus current = RobotStatus.NONEXISTENT;
+    private RobotStatus previous = RobotStatus.NONEXISTENT;
 
-    public Status() {
+    public Status() {}
+
+    public Status(RobotStatus status) {
+        this.set(status);
     }
 
     public RobotStatus current() {
