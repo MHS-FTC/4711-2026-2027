@@ -36,6 +36,30 @@ public class Drivetrain {
         rightFront.setDirection(DcMotorEx.Direction.REVERSE);
         rightRear.setDirection(DcMotorEx.Direction.REVERSE);
     }
+     public void drive(double axial, double lateral, double yaw) {
+        double max;
+
+        double leftFrontPower = axial + lateral + yaw;
+        double leftRearPower = axial - lateral + yaw;
+        double rightFrontPower = axial - lateral - yaw;
+        double rightRearPower = axial + lateral - yaw;
+
+        max = Math.max(Math.abs(leftFrontPower), Math.abs(leftRearPower));
+        max = Math.max(max, Math.abs(rightFrontPower));
+        max = Math.max(max, Math.abs(rightRearPower));
+
+        if (max > 1.0) {
+            leftFrontPower /= max;
+            leftRearPower /= max;
+            rightFrontPower /= max;
+            rightRearPower /= max;
+        }
+
+        leftFront.setPower(leftFrontPower);
+        leftRear.setPower(leftRearPower);
+        rightFront.setPower(rightFrontPower);
+        rightRear.setPower(rightRearPower);
+     }
 
 
 }
