@@ -26,10 +26,10 @@ public class Drivetrain {
     }
 
     private void basicMotorSetup(@NonNull HardwareMap hardwareMap) {
-        leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
-        leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
-        rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
-        rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
+        leftFront   = hardwareMap.get(DcMotorEx.class, "leftFront");
+        leftRear    = hardwareMap.get(DcMotorEx.class, "leftRear");
+        rightFront  = hardwareMap.get(DcMotorEx.class, "rightFront");
+        rightRear   = hardwareMap.get(DcMotorEx.class, "rightRear");
 
         leftFront.setDirection(DcMotorEx.Direction.FORWARD);
         leftRear.setDirection(DcMotorEx.Direction.FORWARD);
@@ -39,20 +39,20 @@ public class Drivetrain {
      public void drive(double axial, double lateral, double yaw) {
         double max;
 
-        double leftFrontPower = axial + lateral + yaw;
-        double leftRearPower = axial - lateral + yaw;
-        double rightFrontPower = axial - lateral - yaw;
-        double rightRearPower = axial + lateral - yaw;
+        double leftFrontPower   = axial + lateral + yaw;
+        double leftRearPower    = axial - lateral + yaw;
+        double rightFrontPower  = axial - lateral - yaw;
+        double rightRearPower   = axial + lateral - yaw;
 
         max = Math.max(Math.abs(leftFrontPower), Math.abs(leftRearPower));
         max = Math.max(max, Math.abs(rightFrontPower));
         max = Math.max(max, Math.abs(rightRearPower));
 
         if (max > 1.0) {
-            leftFrontPower /= max;
-            leftRearPower /= max;
+            leftFrontPower  /= max;
+            leftRearPower   /= max;
             rightFrontPower /= max;
-            rightRearPower /= max;
+            rightRearPower  /= max;
         }
 
         leftFront.setPower(leftFrontPower);

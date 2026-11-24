@@ -15,14 +15,14 @@ public class Robot {
     public Intake intake;
 
     public Robot(@NonNull HardwareMap hardwareMap) {
-        status = new Status();
-        drivetrain = new Drivetrain(hardwareMap);
-        intake = new Intake(hardwareMap);
+        status      = new Status();
+        drivetrain  = new Drivetrain(hardwareMap);
+        intake      = new Intake(hardwareMap);
     }
 
     public Robot(@NonNull HardwareMap hardwareMap, @NonNull RobotStatus initialStatus) {
-        status = new Status(initialStatus);
-        drivetrain = new Drivetrain(hardwareMap);
-        intake = new Intake(hardwareMap);
+        status      = new Status(initialStatus);
+        drivetrain  = new Drivetrain(hardwareMap);
+        intake      = new Intake(hardwareMap);
     }
 }

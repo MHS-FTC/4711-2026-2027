@@ -20,8 +20,8 @@ public class Status {
 
     public void set(RobotStatus status) {
         if (status != this.current) {
-            this.previous = this.current;
-            this.current = status;
+            this.previous   = this.current;
+            this.current    = status;
         }
     }
 
