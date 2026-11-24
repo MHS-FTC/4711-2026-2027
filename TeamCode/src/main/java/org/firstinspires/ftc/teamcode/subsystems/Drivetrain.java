@@ -7,10 +7,10 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Drivetrain {
-    private DcMotorEx leftFront;
-    private DcMotorEx rightFront;
-    private DcMotorEx leftRear;
-    private DcMotorEx rightRear;
+    private DcMotorEx leftFrontDrive;
+    private DcMotorEx rightFrontDrive;
+    private DcMotorEx leftRearDrive;
+    private DcMotorEx rightRearDrive;
 
     public Drivetrain(@NonNull HardwareMap hardwareMap) {
         basicMotorSetup(hardwareMap);
@@ -19,22 +19,22 @@ public class Drivetrain {
     public Drivetrain(@NonNull HardwareMap hardwareMap, @NonNull DcMotor.ZeroPowerBehavior zeroPowerBehavior) {
         basicMotorSetup(hardwareMap);
 
-        leftFront.setZeroPowerBehavior(zeroPowerBehavior);
-        leftRear.setZeroPowerBehavior(zeroPowerBehavior);
-        rightFront.setZeroPowerBehavior(zeroPowerBehavior);
-        rightRear.setZeroPowerBehavior(zeroPowerBehavior);
+        leftFrontDrive.setZeroPowerBehavior(zeroPowerBehavior);
+        leftRearDrive.setZeroPowerBehavior(zeroPowerBehavior);
+        rightFrontDrive.setZeroPowerBehavior(zeroPowerBehavior);
+        rightRearDrive.setZeroPowerBehavior(zeroPowerBehavior);
     }
 
     private void basicMotorSetup(@NonNull HardwareMap hardwareMap) {
-        leftFront   = hardwareMap.get(DcMotorEx.class, "leftFront");
-        leftRear    = hardwareMap.get(DcMotorEx.class, "leftRear");
-        rightFront  = hardwareMap.get(DcMotorEx.class, "rightFront");
-        rightRear   = hardwareMap.get(DcMotorEx.class, "rightRear");
+        leftFrontDrive = hardwareMap.get(DcMotorEx.class, "leftFront");
+        leftRearDrive = hardwareMap.get(DcMotorEx.class, "leftRear");
+        rightFrontDrive = hardwareMap.get(DcMotorEx.class, "rightFront");
+        rightRearDrive = hardwareMap.get(DcMotorEx.class, "rightRear");
 
-        leftFront.setDirection(DcMotorEx.Direction.FORWARD);
-        leftRear.setDirection(DcMotorEx.Direction.FORWARD);
-        rightFront.setDirection(DcMotorEx.Direction.REVERSE);
-        rightRear.setDirection(DcMotorEx.Direction.REVERSE);
+        leftFrontDrive.setDirection(DcMotorEx.Direction.FORWARD);
+        leftRearDrive.setDirection(DcMotorEx.Direction.FORWARD);
+        rightFrontDrive.setDirection(DcMotorEx.Direction.REVERSE);
+        rightRearDrive.setDirection(DcMotorEx.Direction.REVERSE);
     }
      public void drive(double axial, double lateral, double yaw) {
         double max;
@@ -55,10 +55,10 @@ public class Drivetrain {
             rightRearPower  /= max;
         }
 
-        leftFront.setPower(leftFrontPower);
-        leftRear.setPower(leftRearPower);
-        rightFront.setPower(rightFrontPower);
-        rightRear.setPower(rightRearPower);
+        leftFrontDrive.setPower(leftFrontPower);
+        leftRearDrive.setPower(leftRearPower);
+        rightFrontDrive.setPower(rightFrontPower);
+        rightRearDrive.setPower(rightRearPower);
      }
 
 
