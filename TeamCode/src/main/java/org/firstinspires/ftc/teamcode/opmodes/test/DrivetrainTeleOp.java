@@ -27,11 +27,7 @@ public class DrivetrainTeleOp extends OpMode {
         clearBulkCache();
         robot.status.set(RobotStatus.INITIALIZED);
 
-        double axial    = -gamepad1.left_stick_y;
-        double lateral  = gamepad1.left_stick_x;
-        double yaw      = gamepad1.right_stick_x;
-
-        robot.drivetrain.drive(axial, lateral, yaw);
+        robot.drivetrain.drive(gamepad1);
 
         robotTelemetry.update();
     }
