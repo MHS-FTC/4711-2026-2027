@@ -26,6 +26,14 @@ public class RobotTelemetry {
 
     }
 
+    public void toggleDebug() {
+        debug = !debug;
+    }
+
+    public void setDebug(boolean value) {
+        debug = value;
+    }
+
     public boolean shouldUpdate() {
         if (updateTimer.milliseconds() >= updateIntervalMs) {
             updateTimer.reset();
@@ -42,12 +50,23 @@ public class RobotTelemetry {
         }
     }
 
-    public void toggleDebug() {
-        debug = !debug;
+    public void addData(String caption, Object value) {
+        telemetry.addData(caption, value);
     }
 
-    public void setDebug(boolean value) {
-        debug = value;
+    public void addData(String caption, String format, Object... args) {
+        telemetry.addData(caption, format, args);
     }
+
+    public void addDebugData(String caption, Object value) {
+        if (!debug) return;
+        telemetry.addData("[DEBUG] " + caption, value);
+    }
+
+    public void addDebugData(String caption, String format, Object... args) {
+        if (!debug) return;
+        telemetry.addData("[DEBUG] " + caption, format, args);
+    }
+
 
 }
