@@ -26,7 +26,6 @@ public class RobotTelemetry {
         this.telemetry  = telemetry;
         this.updateIntervalMs = updateIntervalMs;
         this.debug = debug;
-        this.updateTimer.reset();
     }
 
     public void toggleDebug() {

@@ -27,7 +27,9 @@ public class MainTeleOp extends OpMode {
         clearBulkCache();
         robot.status.set(RobotStatus.INITIALIZED);
 
-        robot.telemetry.update();
+        robot.drivetrain.drive(gamepad1);
+
+        robot.reportTelemetry();
     }
     private void setBulkCache() {
         allHubs = hardwareMap.getAll(LynxModule.class);

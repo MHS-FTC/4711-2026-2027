@@ -27,7 +27,7 @@ public class DrivetrainTeleOp extends OpMode {
 
         robot.drivetrain.drive(gamepad1);
 
-        robot.telemetry.update();
+        robot.reportTelemetry();
     }
     private void setBulkCache() {
         allHubs = hardwareMap.getAll(LynxModule.class);
