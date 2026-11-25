@@ -17,9 +17,7 @@ public class DrivetrainTeleOp extends OpMode {
     @Override
     public void init() {
         setBulkCache();
-        robot = new Robot(hardwareMap, RobotStatus.INIT);
-
-        this.robotTelemetry = new RobotTelemetry(telemetry, robot.status);
+        robot = new Robot(hardwareMap, telemetry);
     }
 
     @Override
@@ -29,7 +27,7 @@ public class DrivetrainTeleOp extends OpMode {
 
         robot.drivetrain.drive(gamepad1);
 
-        robotTelemetry.update();
+        robot.telemetry.update();
     }
     private void setBulkCache() {
         allHubs = hardwareMap.getAll(LynxModule.class);

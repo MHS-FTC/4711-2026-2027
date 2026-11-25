@@ -15,14 +15,11 @@ import java.util.List;
 public class MainTeleOp extends OpMode {
     private List<LynxModule> allHubs;
     private Robot robot;
-    private RobotTelemetry robotTelemetry;
 
     @Override
     public void init() {
         setBulkCache();
-        robot = new Robot(hardwareMap, RobotStatus.INIT);
-
-        this.robotTelemetry = new RobotTelemetry(telemetry, robot.status);
+        robot = new Robot(hardwareMap, telemetry);
     }
 
     @Override
@@ -30,7 +27,7 @@ public class MainTeleOp extends OpMode {
         clearBulkCache();
         robot.status.set(RobotStatus.INITIALIZED);
 
-        robotTelemetry.update();
+        robot.telemetry.update();
     }
     private void setBulkCache() {
         allHubs = hardwareMap.getAll(LynxModule.class);
