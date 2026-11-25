@@ -25,7 +25,7 @@ public class Robot {
     }
 
     public Robot(@NonNull HardwareMap hardwareMap, @NonNull Telemetry telemetry) {
-        new Robot(hardwareMap, telemetry, RobotStatus.INIT);
+        this(hardwareMap, telemetry, RobotStatus.INIT);
     }
 
     public void reportTelemetry() {

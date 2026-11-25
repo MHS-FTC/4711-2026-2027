@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Robot;
 
 public class RobotTelemetry {
     private final Telemetry telemetry;
@@ -14,16 +15,18 @@ public class RobotTelemetry {
     private boolean readyToUpdate = true;
 
     public RobotTelemetry(@NonNull Telemetry telemetry) {
-        this.telemetry = telemetry;
-
-        setDebug(false);
+        this(telemetry, 100, false);
     }
 
-    public RobotTelemetry(boolean debug, @NonNull Telemetry telemetry) {
-        this.telemetry = telemetry;
+    public RobotTelemetry(@NonNull Telemetry telemetry, double updateIntervalMs) {
+        this(telemetry, updateIntervalMs, false);
+    }
 
-        setDebug(debug);
-
+    public RobotTelemetry(@NonNull Telemetry telemetry, double updateIntervalMs, boolean debug) {
+        this.telemetry  = telemetry;
+        this.updateIntervalMs = updateIntervalMs;
+        this.debug = debug;
+        this.updateTimer.reset();
     }
 
     public void toggleDebug() {
