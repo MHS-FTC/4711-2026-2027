@@ -21,7 +21,7 @@ public class Robot {
         drivetrain  = new Drivetrain(hardwareMap);
         intake      = new Intake(hardwareMap);
 
-        this.telemetry   = new RobotTelemetry(telemetry, status);
+        this.telemetry   = new RobotTelemetry(telemetry);
 
     }
 
