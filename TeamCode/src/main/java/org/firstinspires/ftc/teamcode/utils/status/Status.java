@@ -1,6 +1,9 @@
 package org.firstinspires.ftc.teamcode.utils.status;
 
-public class Status {
+import org.firstinspires.ftc.teamcode.utils.telemetry.RobotTelemetry;
+import org.firstinspires.ftc.teamcode.utils.telemetry.TelemetryReporter;
+
+public class Status implements TelemetryReporter {
     private RobotStatus current = RobotStatus.NONEXISTENT;
     private RobotStatus previous = RobotStatus.NONEXISTENT;
 
@@ -25,5 +28,9 @@ public class Status {
         }
     }
 
-
+    @Override
+    public void reportTelemetry(RobotTelemetry telemetry) {
+        telemetry.addData("Status", "Current", current());
+        telemetry.addDebugData("Status", "Previous", previous());
+    }
 }

@@ -57,8 +57,16 @@ public class RobotTelemetry {
         telemetry.addData(caption, value);
     }
 
+    public void addData(String subassembly, String caption, Object value) {
+        telemetry.addData(subassembly + " | " + caption, value);
+    }
+
     public void addData(String caption, String format, Object... args) {
         telemetry.addData(caption, format, args);
+    }
+
+    public void addData(String subassembly, String caption, String format, Object... args) {
+        telemetry.addData(subassembly + " | " + caption, format, args);
     }
 
     public void addDebugData(String caption, Object value) {
@@ -66,9 +74,19 @@ public class RobotTelemetry {
         telemetry.addData("[DEBUG] " + caption, value);
     }
 
+    public void addDebugData(String subassembly, String caption, Object value) {
+        if (!debug) return;
+        telemetry.addData("[DEBUG] " + subassembly + " | " + caption, value);
+    }
+
     public void addDebugData(String caption, String format, Object... args) {
         if (!debug) return;
         telemetry.addData("[DEBUG] " + caption, format, args);
+    }
+
+    public void addDebugData(String subassembly, String caption, String format, Object... args) {
+        if (!debug) return;
+        telemetry.addData("[DEBUG] " + subassembly + " | " + caption, format, args);
     }
 
 

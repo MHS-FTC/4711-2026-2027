@@ -7,7 +7,10 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class Drivetrain {
+import org.firstinspires.ftc.teamcode.utils.telemetry.RobotTelemetry;
+import org.firstinspires.ftc.teamcode.utils.telemetry.TelemetryReporter;
+
+public class Drivetrain implements TelemetryReporter {
     private DcMotorEx leftFrontDrive;
     private DcMotorEx rightFrontDrive;
     private DcMotorEx leftRearDrive;
@@ -72,5 +75,11 @@ public class Drivetrain {
 
     }
 
-
+    @Override
+    public void reportTelemetry(RobotTelemetry telemetry) {
+        telemetry.addDebugData("Drivetrain | leftFrontDrive", "Power", leftFrontDrive.getPower());
+        telemetry.addDebugData("Drivetrain | leftRearDrive", "Power", leftRearDrive.getPower());
+        telemetry.addDebugData("Drivetrain | rightFrontDrive", "Power", rightFrontDrive.getPower());
+        telemetry.addDebugData("Drivetrain | rightRearDrive", "Power", rightRearDrive.getPower());
+    }
 }

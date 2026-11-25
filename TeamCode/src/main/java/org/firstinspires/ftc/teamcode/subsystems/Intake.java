@@ -6,12 +6,14 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class Intake {
+import org.firstinspires.ftc.teamcode.utils.telemetry.RobotTelemetry;
+import org.firstinspires.ftc.teamcode.utils.telemetry.TelemetryReporter;
+
+public class Intake implements TelemetryReporter {
     private DcMotorEx intakeMotor;
 
     public Intake(@NonNull HardwareMap hardwareMap) {
-        basicMotorSetup(hardwareMap);
-        basicMotorDirection(DcMotorSimple.Direction.FORWARD);
+        this(hardwareMap, DcMotorSimple.Direction.FORWARD);
     }
 
     public Intake(@NonNull HardwareMap hardwareMap, DcMotorSimple.Direction direction) {
@@ -25,5 +27,10 @@ public class Intake {
 
     private void basicMotorDirection(@NonNull DcMotorSimple.Direction direction) {
         intakeMotor.setDirection(direction);
+    }
+
+    @Override
+    public void reportTelemetry(RobotTelemetry telemetry) {
+        telemetry.addDebugData("Intake | Motor", "Direction", intakeMotor.getDirection());
     }
 }
