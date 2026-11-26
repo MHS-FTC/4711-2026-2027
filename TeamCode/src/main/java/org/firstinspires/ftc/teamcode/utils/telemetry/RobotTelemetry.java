@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.Robot;
 
 public class RobotTelemetry {
     private final Telemetry telemetry;
@@ -15,7 +14,7 @@ public class RobotTelemetry {
     private boolean readyToUpdate = true;
 
     public RobotTelemetry(@NonNull Telemetry telemetry) {
-        this(telemetry, 100, false);
+        this(telemetry, 100);
     }
 
     public RobotTelemetry(@NonNull Telemetry telemetry, double updateIntervalMs) {
@@ -36,6 +35,10 @@ public class RobotTelemetry {
         debug = value;
     }
 
+    public boolean isDebug() {
+        return debug;
+    }
+
     public boolean shouldUpdate() {
         if (updateTimer.milliseconds() >= updateIntervalMs) {
             updateTimer.reset();
@@ -49,6 +52,7 @@ public class RobotTelemetry {
     public void update() {
         if (readyToUpdate) {
             telemetry.update();
+            readyToUpdate = false;
         }
     }
 

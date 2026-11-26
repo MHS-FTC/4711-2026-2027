@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.utils.telemetry.RobotTelemetry;
 
 public class Robot {
-    private RobotTelemetry robotTelemetry;
+    private final RobotTelemetry robotTelemetry;
     public Status status;
     public Drivetrain drivetrain;
     public Intake intake;
@@ -36,5 +36,11 @@ public class Robot {
         intake.reportTelemetry(robotTelemetry);
 
         robotTelemetry.update();
+    }
+
+    public void toggleDebug(boolean buttonWasPressed) {
+        if (buttonWasPressed) {
+            robotTelemetry.toggleDebug();
+        }
     }
 }
