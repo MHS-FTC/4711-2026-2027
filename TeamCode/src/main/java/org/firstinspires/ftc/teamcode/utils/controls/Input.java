@@ -20,6 +20,10 @@ public class Input {
         public final Axis axis;
         public final boolean inverted;
 
+        public AxisBind(Controller controller, Axis axis) {
+            this(controller, axis, false);
+        }
+
         public AxisBind(Controller controller, Axis axis, boolean inverted) {
             this.controller = controller;
             this.axis = axis;
