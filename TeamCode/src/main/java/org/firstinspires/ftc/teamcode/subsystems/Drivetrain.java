@@ -80,6 +80,9 @@ public class Drivetrain implements TelemetryReporter {
 
     @Override
     public void reportTelemetry(RobotTelemetry telemetry) {
+        telemetry.addData("Drivetrain | SlowMode", slowMode);
+
+        telemetry.addDebugData("Drivetrain | SlowFactor", slowFactor);
         telemetry.addDebugData("Drivetrain | leftFrontDrive", "Power", leftFrontDrive.getPower());
         telemetry.addDebugData("Drivetrain | leftRearDrive", "Power", leftRearDrive.getPower());
         telemetry.addDebugData("Drivetrain | rightFrontDrive", "Power", rightFrontDrive.getPower());
