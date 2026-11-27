@@ -15,9 +15,11 @@ public class Drivetrain implements TelemetryReporter {
     private DcMotorEx rightFrontDrive;
     private DcMotorEx leftRearDrive;
     private DcMotorEx rightRearDrive;
+    private boolean slowMode = false;
+    private double slowFactor = 0.5;
 
     public Drivetrain(@NonNull HardwareMap hardwareMap) {
-        basicMotorSetup(hardwareMap);
+        this(hardwareMap, DcMotor.ZeroPowerBehavior.FLOAT);
     }
 
     public Drivetrain(@NonNull HardwareMap hardwareMap, @NonNull DcMotor.ZeroPowerBehavior zeroPowerBehavior) {
@@ -52,6 +54,8 @@ public class Drivetrain implements TelemetryReporter {
         max = Math.max(max, Math.abs(rightFrontPower));
         max = Math.max(max, Math.abs(rightRearPower));
 
+        max /= (slowMode) ? slowFactor : 1;
+
         if (max > 1.0) {
             leftFrontPower  /= max;
             leftRearPower   /= max;
@@ -64,6 +68,15 @@ public class Drivetrain implements TelemetryReporter {
         rightFrontDrive.setPower(rightFrontPower);
         rightRearDrive.setPower(rightRearPower);
      }
+
+     public void setSlowMode(boolean value) { slowMode = value; }
+     public void toggleSlowMode() { slowMode = !slowMode; }
+
+     public void toggleSlowMode(boolean wasButtonPressed) {
+        if (wasButtonPressed) { toggleSlowMode(); }
+     }
+
+     public void setSlowFactor(double value) { slowFactor = value;}
 
     @Override
     public void reportTelemetry(RobotTelemetry telemetry) {

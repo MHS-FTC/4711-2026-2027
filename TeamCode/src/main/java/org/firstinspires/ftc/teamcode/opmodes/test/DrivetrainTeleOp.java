@@ -27,6 +27,8 @@ public class DrivetrainTeleOp extends OpMode {
         clearBulkCache();
         robot.status.set(RobotStatus.INITIALIZED);
 
+        robot.drivetrain.setSlowMode(controls.isSlowModeActive());
+
         robot.drivetrain.drive(
                 controls.getDriveAxial(),
                 controls.getDriveLateral(),
