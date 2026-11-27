@@ -15,7 +15,7 @@ public class Controls {
     private final Gamepad gamepad2;
     private ControlProfile profile;
 
-    Controls(Gamepad gamepad1) {
+    public Controls(Gamepad gamepad1) {
         this(gamepad1, null, ControlProfile.SOLO_DRIVER());
     }
     public Controls(Gamepad gamepad1, Gamepad gamepad2) {

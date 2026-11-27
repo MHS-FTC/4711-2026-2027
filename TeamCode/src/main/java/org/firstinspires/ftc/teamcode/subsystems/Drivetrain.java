@@ -65,16 +65,6 @@ public class Drivetrain implements TelemetryReporter {
         rightRearDrive.setPower(rightRearPower);
      }
 
-    public void drive(@NonNull Gamepad gamepad) {
-        // double axial    = -gamepad.left_stick_y;
-        // double lateral  = gamepad.left_stick_x;
-        // double yaw      = gamepad.right_stick_x;
-
-        // drive(axial, lateral, yaw);
-        drive(-gamepad.left_stick_y, gamepad.left_stick_x, gamepad.right_stick_x);
-
-    }
-
     @Override
     public void reportTelemetry(RobotTelemetry telemetry) {
         telemetry.addDebugData("Drivetrain | leftFrontDrive", "Power", leftFrontDrive.getPower());

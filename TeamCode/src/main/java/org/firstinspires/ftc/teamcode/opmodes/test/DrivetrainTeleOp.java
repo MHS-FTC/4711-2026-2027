@@ -4,6 +4,7 @@ import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.Robot;
+import org.firstinspires.ftc.teamcode.utils.controls.Controls;
 import org.firstinspires.ftc.teamcode.utils.status.RobotStatus;
 import org.firstinspires.ftc.teamcode.utils.telemetry.RobotTelemetry;
 
@@ -11,13 +12,14 @@ import java.util.List;
 
 public class DrivetrainTeleOp extends OpMode {
     private List<LynxModule> allHubs;
-    private Robot robot;
-    private RobotTelemetry robotTelemetry;
+    public Robot robot;
+    public Controls controls;
 
     @Override
     public void init() {
         setBulkCache();
         robot = new Robot(hardwareMap, telemetry);
+        controls = new Controls(gamepad1);
     }
 
     @Override
@@ -25,7 +27,11 @@ public class DrivetrainTeleOp extends OpMode {
         clearBulkCache();
         robot.status.set(RobotStatus.INITIALIZED);
 
-        robot.drivetrain.drive(gamepad1);
+        robot.drivetrain.drive(
+                controls.getDriveAxial(),
+                controls.getDriveLateral(),
+                controls.getDriveYaw()
+        );
 
         robot.reportTelemetry();
     }
