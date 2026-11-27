@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.utils;
 
-import android.service.controls.Control;
+import androidx.annotation.NonNull;
 
 import org.firstinspires.ftc.teamcode.utils.controls.Input;
 
@@ -12,6 +12,7 @@ public class Constants {
         public Input.ButtonBind slowMode;
         public Input.ButtonBind intakeToggle;
 
+        @NonNull
         public static ControlProfile SOLO_DRIVER() {
             ControlProfile p = new ControlProfile();
 
@@ -24,8 +25,9 @@ public class Constants {
             return p;
         }
 
+        @NonNull
         public static ControlProfile DUAL_DRIVER() {
-            ControlProfile p = new ControlProfile();
+            ControlProfile p = SOLO_DRIVER();
 
             p.intakeToggle = new Input.ButtonBind(Input.Controller.DRIVER_2, Input.Button.A);
 
